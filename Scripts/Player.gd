@@ -26,6 +26,7 @@ func _control_move():
 		linear_velocity.x = -1
 	if linear_velocity.length() == 0:
 		change_state(STATE_IDLE)
+		pass
 
 func _update_animation():
 	match body_state:
