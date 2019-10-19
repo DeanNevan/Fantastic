@@ -8,7 +8,7 @@ extends "res://Scripts/CreatureTemplate.gd"
 func _ready():
 	var hey = preload("res://Assets/Card/AttackMagic/great_fire_ball/great_fire_ball.tscn")
 	
-	for i in 4:
+	for i in 12:
 		$Hand.add_child(hey.instance())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

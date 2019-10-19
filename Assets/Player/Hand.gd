@@ -10,7 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_choose_card()
-	print(get_viewport().get_size())
+	#print(get_viewport().get_size())
 	for i in get_child_count():
 		if i == choosed_card_number - 1:
 			get_child(i).is_choosed = true

@@ -34,11 +34,11 @@ margin_right = 53.0
 margin_bottom = 50.0
 color = Color( 0, 0, 0, 0.784314 )
 
-[node name="Info" type="Label" parent="InformationRect"]
-margin_left = 3.0
-margin_top = 0.5
-margin_right = 78.0
-margin_bottom = 105.5
+[node name="Info" type="Label" parent="."]
+margin_left = -50.0
+margin_top = -69.5
+margin_right = 40.0
+margin_bottom = 45.5
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_constants/line_spacing = -1
