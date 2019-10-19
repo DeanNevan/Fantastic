@@ -29,7 +29,11 @@ enum {
 	STATE_ATTACK
 }
 var body_state = STATE_IDLE
-# Called when the node enters the scene tree for the first time.
+
+var deck = []#卡组
+var hand = []#手牌
+var discard = []#弃牌
+
 func _ready():
 	add_child(invincible_timer)
 	invincible_timer.one_shot = true
