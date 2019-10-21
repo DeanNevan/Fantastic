@@ -16,7 +16,7 @@ func _process(delta):
 			get_child(i).is_choosed = true
 		else:
 			get_child(i).is_choosed = false
-		get_child(i).global_position = Vector2(200 + 130 * i, get_viewport().get_size_override().y - 100)
+		get_child(i).global_position = Vector2(200 + 130 * i, get_viewport().get_size_override().y - 110)
 
 func _choose_card():
 	if get_child_count() == 0:

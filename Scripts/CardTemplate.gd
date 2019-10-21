@@ -20,7 +20,7 @@ func _process(delta):
 		_is_tween_2 = false
 		if !_is_tween_1:
 			_is_tween_1 = true
-			tween_1.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1.5, 1.5), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			tween_1.interpolate_property(self, "scale", Vector2(1, 1), Vector2(1.6, 1.6), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			tween_1.start()
 			tween_2.interpolate_property($InformationRect, "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 0.8), 0.3, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			tween_2.start()
