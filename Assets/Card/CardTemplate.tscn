@@ -1,8 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/CardTemplate.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/Card&Magic/AttackMagic/GreatFireBall/great_fire_ball_card_idle_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Card/Attack/GreatFireBall/great_fire_ball_card_idle_1.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/三极准柔宋字体.ttf" type="DynamicFontData" id=3]
+
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {

@@ -29,6 +29,9 @@ func _process(delta):
 	SE_fade()
 	SE_drag()
 
+func launch():
+	pass
+
 func SE_drag():
 	if is_dragged and !is_dragging:
 		is_dragging = true

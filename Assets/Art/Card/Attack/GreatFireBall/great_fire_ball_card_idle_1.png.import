@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/great_fire_ball_card_idle_1.png-76833605ca3ce72153fb316eec36da6d.stex"
+path="res://.import/great_fire_ball_card_idle_1.png-4bfc1a173d90390fa1cbcbdf52ff696c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Art/Card&Magic/AttackMagic/GreatFireBall/great_fire_ball_card_idle_1.png"
-dest_files=[ "res://.import/great_fire_ball_card_idle_1.png-76833605ca3ce72153fb316eec36da6d.stex" ]
+source_file="res://Assets/Art/Card/Attack/GreatFireBall/great_fire_ball_card_idle_1.png"
+dest_files=[ "res://.import/great_fire_ball_card_idle_1.png-4bfc1a173d90390fa1cbcbdf52ff696c.stex" ]
 
 [params]
 

@@ -7,7 +7,7 @@ onready var camera = get_parent().get_node("Camera2D")
 
 func _ready():
 	
-	var hey = preload("res://Assets/Card/AttackMagic/great_fire_ball/great_fire_ball.tscn")
+	var hey = preload("res://Assets/Card/Attack/great_fire_ball/great_fire_ball.tscn")
 	
 	for i in 12:
 		$Hand.add_child(hey.instance())
