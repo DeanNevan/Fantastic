@@ -1,46 +1,56 @@
 extends "res://Scripts/CreatureTemplate.gd"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var is_controlling = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var hey = preload("res://Assets/Card/AttackMagic/great_fire_ball/great_fire_ball.tscn")
-	
-	for i in 12:
-		$Hand.add_child(hey.instance())
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	_control_move(delta)
+	_update_animation()
 
-func _control_move():
+func _control_move(delta):
 	if body_state == STATE_LOSE_CONTROL:
 		return
-	change_state(STATE_MOVE)
+	
+	is_controlling = false
+	velocity = Vector2()
+	
 	if Input.is_action_pressed("control_up"):
-		linear_velocity.y = -1
+		velocity.y = -1
+		is_controlling = true
 	if Input.is_action_pressed("control_down"):
-		linear_velocity.y = 1
+		velocity.y = 1
+		is_controlling = true
 	if Input.is_action_pressed("control_right"):
-		linear_velocity.x = 1
+		velocity.x = 1
+		is_controlling = true
 	if Input.is_action_pressed("control_left"):
-		linear_velocity.x = -1
-	if linear_velocity.length() == 0:
+		velocity.x = -1
+		is_controlling = true
+	
+	if !is_controlling:
+		velocity = Vector2()
+	else:
+		change_state(STATE_MOVE)
+	
+	if velocity.length() == 0:
 		change_state(STATE_IDLE)
 		pass
+	self.linear_velocity = velocity.normalized() * speed
 
 func _update_animation():
 	match body_state:
 		STATE_IDLE:
 			ani.animation = "idle"
 		STATE_MOVE:
-			if linear_velocity.y < 0:
+			if velocity.y < 0:
 				ani.animation = "up"
 			else:
 				ani.animation = "down"
-			if linear_velocity.x > 0:
+			if velocity.x > 0:
 				ani.animation = "right"
 			else:
 				ani.animation = "left"

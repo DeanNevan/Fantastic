@@ -15,6 +15,10 @@ var strength = 15
 var melee_armor = 10
 var magic_armor = 10
 
+var velocity = Vector2()
+var max_speed = 150
+var speed = 150
+
 var is_invincible := false
 onready var invincible_timer = Timer.new()
 var invincible_time = 0.2
