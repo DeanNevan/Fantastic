@@ -25,6 +25,7 @@ var invincible_time = 0.2
 
 onready var ani = $AnimatedSprite
 
+var state = STATE_IDLE
 enum {
 	STATE_IDLE
 	STATE_MOVE
@@ -32,7 +33,7 @@ enum {
 	STATE_LAUNCH
 	STATE_ATTACK
 }
-var body_state = STATE_IDLE
+
 
 var deck = []#卡组
 var hand = []#手牌
@@ -51,8 +52,8 @@ func _process(delta):
 func _on_invincible_timer_timeout():
 	self.is_invincible = false
 
-func change_state(state):
-	body_state = state
+func change_state(target_state):
+	state = target_state
 
 func get_damage(damage, type):
 	match type:

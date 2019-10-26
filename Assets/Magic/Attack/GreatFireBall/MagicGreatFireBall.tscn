@@ -1,0 +1,124 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Assets/Magic/Attack/GreatFireBall/MagicGreatFireBall.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_4.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_5.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Magic/Attack/GreatFireBall/GreatFireBall_launch_6.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Particle/Fire/fire_1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/Particle/Fire/fire_2.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/Particle/Fire/fire_3.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "end",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "start",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "launch",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "prepare",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 18, 18 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+points = PoolVector2Array( 46, -14.5, 55, 0, 46, 17 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.481481, 0.688889, 0.851852, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 0.929688, 0.588346, 0.105316, 1, 0.984375, 0.406752, 0.180725, 1, 1, 0, 0, 1, 0.167969, 0.145004, 0.145004, 1 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.2217 ), 0.0, 0.0, 0, 0, Vector2( 0.430976, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.594123, 0.8289 ), 0.0, 0.0, 0, 0, Vector2( 0.820018, 0.6177 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.2107 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 14, 17, 1 )
+flag_disable_z = true
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 150.0
+angular_velocity = 100.0
+angular_velocity_random = 0.3
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 10.0
+damping = 100.0
+damping_random = 0.4
+angle = 90.0
+angle_random = 0.5
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
+
+[node name="MagicGreatFireBall" type="Area2D"]
+position = Vector2( -35, 0 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "launch"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 30.0344, 1.21627 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 1.97364, 0.0730991 )
+shape = SubResource( 3 )
+
+[node name="Particles" type="Node2D" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="Particles"]
+position = Vector2( 35, 0 )
+rotation = -3.14159
+amount = 200
+lifetime = 2.6
+local_coords = false
+process_material = SubResource( 8 )
+texture = ExtResource( 8 )
+
+[node name="Particles2D2" type="Particles2D" parent="Particles"]
+position = Vector2( 35, 0 )
+rotation = -3.14159
+amount = 200
+lifetime = 2.6
+local_coords = false
+process_material = SubResource( 8 )
+texture = ExtResource( 9 )
+
+[node name="Particles2D3" type="Particles2D" parent="Particles"]
+position = Vector2( 35, 0 )
+rotation = -3.14159
+amount = 200
+lifetime = 2.6
+local_coords = false
+process_material = SubResource( 8 )
+texture = ExtResource( 10 )

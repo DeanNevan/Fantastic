@@ -13,8 +13,12 @@ func _process(delta):
 	
 	for i in get_child_count():
 		if i == choosed_card_number - 1:
+			if get_child(i).state == get_child(i).STATE_IDLE:
+				get_child(i).change_state(get_child(i).STATE_CHOOSED)
 			get_child(i).is_choosed = true
 		else:
+			if get_child(i).state == get_child(i).STATE_CHOOSED:
+				get_child(i).change_state(get_child(i).STATE_IDLE)
 			get_child(i).is_choosed = false
 		
 		var card_camera_offset = Vector2(220 + 130 * i - get_viewport().get_size_override().x / 2, get_viewport().get_size_override().y / 2 - 110)
@@ -23,15 +27,18 @@ func _process(delta):
 		
 		get_child(i).position = card_camera_offset + get_child(i).drag_offset
 	
-	if Input.is_action_pressed("key_space"):
+	"""if Input.is_action_pressed("key_space"):#空格按下，将被选中的卡片设置为“dragged”即拖拽状态
 		for i in get_child_count():
 			if get_child(i).is_choosed:
 				get_child(i).is_dragged = true
+				get_child(i).state = get_child(i).STATE_DRAGGED
 			else:
+				get_child(i).state = get_child(i).STATE_IDLE
 				get_child(i).is_dragged = false
 	else:
 		for i in get_child_count():
-			get_child(i).is_dragged = false
+			get_child(i).state = get_child(i).STATE_IDLE
+			get_child(i).is_dragged = false"""
 
 func _choose_card():
 	if get_child_count() == 0:

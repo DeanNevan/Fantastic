@@ -12,7 +12,7 @@ func _process(delta):
 	_update_animation()
 
 func _control_move(delta):
-	if body_state == STATE_LOSE_CONTROL:
+	if state == STATE_LOSE_CONTROL:
 		return
 	
 	is_controlling = false
@@ -42,7 +42,7 @@ func _control_move(delta):
 	self.linear_velocity = velocity.normalized() * speed
 
 func _update_animation():
-	match body_state:
+	match state:
 		STATE_IDLE:
 			ani.animation = "idle"
 		STATE_MOVE:
