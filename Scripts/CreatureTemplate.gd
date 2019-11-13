@@ -16,8 +16,8 @@ var melee_armor = 10
 var magic_armor = 10
 
 var velocity = Vector2()
-var max_speed = 150
-var speed = 150
+var max_speed = 180
+var speed = 180
 
 var is_invincible := false
 onready var invincible_timer = Timer.new()
@@ -25,6 +25,7 @@ var invincible_time = 0.2
 
 onready var ani = $AnimatedSprite
 
+#生物的状态
 var state = STATE_IDLE
 enum {
 	STATE_IDLE
@@ -52,14 +53,16 @@ func _process(delta):
 func _on_invincible_timer_timeout():
 	self.is_invincible = false
 
+#状态机方法
 func change_state(target_state):
 	state = target_state
 
+#受伤方法
 func get_damage(damage, type):
 	match type:
 		attack_type.ATTACK_TYPE_ELSE:
 			life -= damage
-		
+		#物理伤害
 		attack_type.ATTACK_TYPE_MELEE:
 			if is_invincible:
 				return
@@ -68,7 +71,7 @@ func get_damage(damage, type):
 				invincible_timer.start()
 				is_invincible = true
 				life -= clamp(damage - melee_armor, 1, max_life)
-		
+		#魔法伤害
 		attack_type.ATTACK_TYPE_MAGIC:
 			if is_invincible:
 				return

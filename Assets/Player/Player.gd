@@ -41,6 +41,7 @@ func _control_move(delta):
 		pass
 	self.linear_velocity = velocity.normalized() * speed
 
+#更新动画
 func _update_animation():
 	match state:
 		STATE_IDLE:

@@ -5,7 +5,7 @@ signal not_prepare
 signal start
 
 
-
+#卡片的状态
 var state = STATE_IDLE
 enum{
 	STATE_IDLE
@@ -46,7 +46,6 @@ func _ready():
 	
 	connect("pair_scene_init_ok", self, "_on_pair_scene_init_ok")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("key_space") and state == STATE_CHOOSED:
 		change_state(STATE_DRAGGED)
@@ -63,6 +62,7 @@ func _process(delta):
 		STATE_DRAGGED:
 			pass
 
+#状态机
 func change_state(target_state):
 	if state == STATE_IDLE and target_state == STATE_CHOOSED:
 		SE_choosed(false)
@@ -86,6 +86,7 @@ func prepare(is_reversed = false):#显示配对的场景动画or reversed
 func start():
 	emit_signal("start")
 
+#当配对场景初始化完成
 func _on_pair_scene_init_ok():
 	player.get_parent().call_deferred("add_child", pair_scene)#在下添加子节点
 	pair_scene.change_state(pair_scene.STATE_IDLE)
@@ -93,7 +94,7 @@ func _on_pair_scene_init_ok():
 	pair_scene.visible = false
 	pair_scene.pair_card_init_ok()
 
-
+#拽动特效
 func SE_drag():
 	if is_dragged and !is_dragging:
 		is_dragging = true
@@ -109,14 +110,17 @@ func SE_drag():
 		if (in_hand_position - drag_start_position_1).length() != 0:
 			drag_offset -= clamp(((self.global_position - in_hand_position).length() / (in_hand_position - drag_start_position_1).length()) * drag_speed, 0, drag_speed) * - (in_hand_position - self.global_position).normalized()
 
+#淡出特效
 func SE_fade_out(target = self, degree = 1, speed = 0.3):
 	tween_4.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, 1 - degree), speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween_4.start()
 
+#淡入特效
 func SE_fade_in(target = self, degree = 1, speed = 0.3):
 	tween_4.interpolate_property(self, "modulate", self.modulate, Color(1, 1, 1, degree), speed, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween_4.start()
 
+#被选中时的特效展现
 func SE_choosed(is_reversed = false):
 	if !is_reversed:
 		_is_tween_2 = false
